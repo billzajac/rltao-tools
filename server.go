@@ -10,10 +10,10 @@ import (
 	"time"
 )
 
-func GenerateHTML(id int) string {
+func GenerateHTML() string {
 	t := time.Now()
 	now := t.Format("2006-01-02 15:04:05")
-
+	id := rltao.GenerateId()
 	tetragram := rltao.GetTetragram(id)
 	passage := rltao.GetPassage(id)
 	html := fmt.Sprintf(`<html>
@@ -43,8 +43,7 @@ h1 em { font-style: normal; font-weight: 600; }
 }
 
 func generateTetragram(w http.ResponseWriter, r *http.Request) {
-	id := rltao.GenerateId()
-	body := GenerateHTML(id)
+	body := GenerateHTML()
 	fmt.Fprintf(w, "%s", body)
 }
 
